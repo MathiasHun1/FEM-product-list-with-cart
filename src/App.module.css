@@ -1,0 +1,7 @@
+.wrapper {
+  min-height: 100%;
+  padding: var(--spacing-300);
+  background: var(--clr-rose-50);
+  font-family: var(--ff-base);
+  max-width: 500px;
+}

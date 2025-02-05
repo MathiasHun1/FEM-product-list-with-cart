@@ -1,0 +1,23 @@
+.text_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-50);
+}
+
+.card_category {
+  font-size: var(--fs-S);
+  font-weight: var(--fw-regular);
+  color: var(--clr-rose-500);
+}
+
+.card_name {
+  font-size: var(--fs-M);
+  font-weight: var(--fw-semi-bold);
+  color: var(--clr-rose-900);
+}
+
+.card_price {
+  font-size: var(--fs-M);
+  font-weight: var(--fw-semi-bold);
+  color: var(--clr-red);
+}

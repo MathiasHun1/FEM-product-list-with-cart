@@ -1,0 +1,36 @@
+.add_button {
+  background: var(--clr-white);
+  border: 2px solid var(--clr-rose-400);
+  border-radius: 999px;
+  padding: var(--spacing-150);
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateY(50%) translateX(-50%);
+}
+
+.quantity_wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--clr-white);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.red {
+  background: var(--clr-red);
+}

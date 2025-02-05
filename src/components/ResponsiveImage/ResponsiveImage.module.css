@@ -1,0 +1,10 @@
+.image_wrapper {
+  width: 500;
+  height: 500;
+  margin-bottom: var(--spacing-500);
+  position: relative;
+}
+
+.picture {
+  border-radius: 8px;
+}

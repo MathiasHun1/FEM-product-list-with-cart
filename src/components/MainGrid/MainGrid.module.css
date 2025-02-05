@@ -1,0 +1,14 @@
+.main_grid {
+}
+
+.title {
+  font-size: var(--fs-XL);
+  font-weight: var(--fw-bold);
+  margin-bottom: var(--spacing-400);
+}
+
+.cards_grid {
+  width: 100%;
+  display: grid;
+  row-gap: var(--spacing-300);
+}

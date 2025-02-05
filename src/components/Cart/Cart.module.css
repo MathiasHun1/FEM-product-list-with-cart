@@ -1,0 +1,24 @@
+.cart_wrapper {
+  background: var(--clr-white);
+  padding: var(--spacing-300);
+}
+
+.empty_cart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-200);
+  padding-block: var(--spacing-150);
+}
+
+.empty_text {
+  color: var(--clr-rose-500);
+  font-size: var(--fs-S);
+  font-weight: var(--fw-semi-bold);
+}
+
+.cart_title {
+  color: var(--clr-red);
+  font-size: var(--fs-L);
+  font-weight: var(--fw-bold);
+}
