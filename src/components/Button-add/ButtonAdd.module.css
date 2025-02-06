@@ -14,6 +14,10 @@
   transform: translateY(50%) translateX(-50%);
 }
 
+.add_button:hover {
+  cursor: pointer;
+}
+
 .quantity_wrapper {
   width: 100%;
   display: flex;
@@ -28,6 +32,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.icon:hover {
   cursor: pointer;
 }
 

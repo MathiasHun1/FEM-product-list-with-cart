@@ -10,10 +10,10 @@ import Cart from './components/Cart/Cart';
 
 const App = () => {
   const { wrapper } = styles;
-  const [data, setData] = useState(null);
-  const [itemsListing, setItemsListing] = useState(null);
+  const [data, setData] = useState([]);
+  const [itemsListing, setItemsListing] = useState([]);
 
-  // loading data
+  // loading initial data
   useEffect(() => {
     services.getAll().then((res) => {
       setData(res);
@@ -22,12 +22,14 @@ const App = () => {
     });
   }, []);
 
+  // logging cart state for debug
   useEffect(() => {}, [itemsListing]);
 
   return (
     <div className={wrapper}>
       <MainGrid data={data} itemsListing={itemsListing} setItemsListing={setItemsListing} />
-      <Cart />
+
+      <Cart itemsListing={itemsListing} data={data} />
     </div>
   );
 };

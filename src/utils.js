@@ -23,11 +23,7 @@ const createItemListing = (data) => {
 const setPickedValue = (itemListing, itemName, addedCount) => {
   const item = itemListing.find((i) => i.itemKey === itemName);
 
-  if (!Number(addedCount)) {
-    item.timesPicked += 1;
-  } else {
-    item.timesPicked += Number(addedCount);
-  }
+  item.timesPicked = addedCount;
 };
 
 export default {

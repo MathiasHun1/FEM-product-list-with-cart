@@ -7,24 +7,36 @@ const ButtonAdd = ({ cardData, itemsListing, setItemsListing }) => {
   const { add_button, quantity_wrapper, icon, red } = styles;
   const [isActive, setIsActive] = useState(false);
   const [pickCount, setPickCount] = useState(0);
-  const value = itemsListing.find((i) => i.itemKey === cardData.name).timesPicked;
+
+  useEffect(() => {
+    const value = itemsListing.find((i) => i.itemKey === cardData.name).timesPicked;
+    setPickCount(value);
+  }, []);
 
   const handleButtonClick = () => {
+    if (!isActive) {
+      return setIsActive(!isActive);
+    }
+
+    const itemsListingCopy = _.cloneDeep(itemsListing);
+    helpers.setPickedValue(itemsListingCopy, cardData.name, pickCount);
+    setItemsListing(itemsListingCopy);
     setIsActive(!isActive);
   };
 
   const handleIncrement = (e) => {
     e.stopPropagation();
-    const itemsListingCopy = _.cloneDeep(itemsListing);
-    helpers.setPickedValue(itemsListingCopy, cardData.name);
-    setItemsListing(itemsListingCopy);
+    setPickCount(pickCount + 1);
   };
 
   const handleDecrement = (e) => {
     e.stopPropagation();
-    const itemsListingCopy = _.cloneDeep(itemsListing);
-    helpers.setPickedValue(itemsListingCopy, cardData.name);
-    setItemsListing(itemsListingCopy);
+
+    if (pickCount === 0) {
+      return;
+    }
+
+    setPickCount(pickCount - 1);
   };
 
   return (
@@ -41,7 +53,7 @@ const ButtonAdd = ({ cardData, itemsListing, setItemsListing }) => {
           <div className={icon} onClick={(e) => handleDecrement(e)}>
             <img src="/images/icon-decrement-quantity.svg" alt="" />
           </div>
-          {value}
+          {pickCount}
           <div className={icon} onClick={(e) => handleIncrement(e)}>
             <img src="/images/icon-increment-quantity.svg" alt="" />
           </div>

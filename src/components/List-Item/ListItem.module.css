@@ -1,0 +1,40 @@
+.list_item {
+  list-style-type: none;
+}
+
+.title {
+  color: var(--clr-rose-900);
+  font-size: var(--fs-S);
+  font-weight: var(--fw-bold);
+  margin-bottom: var(--spacing-100);
+}
+
+.container {
+  display: flex;
+  gap: var(--spacing-100);
+}
+
+.quantity {
+  color: var(--clr-red);
+  font-size: var(--fs-S);
+  font-weight: var(--fw-semi-bold);
+}
+
+.item_price {
+  color: var(--clr-rose-500);
+  font-size: var(--fs-S);
+  font-weight: var(--fw-regular);
+}
+
+.item_final {
+  color: var(--clr-rose-500);
+  font-size: var(--fs-S);
+  font-weight: var(--fw-semi-bold);
+}
+
+.spacer {
+  width: 100%;
+  height: 2px;
+  background: var(--clr-rose-100);
+  margin-block: var(--spacing-200);
+}
