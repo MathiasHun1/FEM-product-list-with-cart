@@ -1,4 +1,5 @@
 .add_button {
+  color: var(--clr-black);
   font-size: var(--fs-S);
   font-weight: var(--fw-semi-bold);
   background: var(--clr-white);
