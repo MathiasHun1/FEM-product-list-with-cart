@@ -3,24 +3,26 @@ import helpers from '../../utils';
 import { useEffect, useState } from 'react';
 import _ from 'lodash';
 
-const ButtonAdd = ({ cardData, itemsListing, setItemsListing }) => {
+const ButtonAdd = ({ cardData, itemsListing, setItemsListing, isActive, setIsActive }) => {
   const { add_button, quantity_wrapper, icon, red } = styles;
-  const [isActive, setIsActive] = useState(false);
+  // const [isActive, setIsActive] = useState(false);
   const [pickCount, setPickCount] = useState(0);
 
   useEffect(() => {
     const value = itemsListing.find((i) => i.itemKey === cardData.name).timesPicked;
     setPickCount(value);
-  }, []);
+
+    if (value === 0) {
+      setIsActive(false);
+    }
+  }, [itemsListing]);
+
+  useEffect(() => {
+    const updatedItemsListing = helpers.setPickedValue(itemsListing, cardData.name, pickCount);
+    setItemsListing(updatedItemsListing);
+  }, [pickCount]);
 
   const handleButtonClick = () => {
-    if (!isActive) {
-      return setIsActive(!isActive);
-    }
-
-    const itemsListingCopy = _.cloneDeep(itemsListing);
-    helpers.setPickedValue(itemsListingCopy, cardData.name, pickCount);
-    setItemsListing(itemsListingCopy);
     setIsActive(!isActive);
   };
 

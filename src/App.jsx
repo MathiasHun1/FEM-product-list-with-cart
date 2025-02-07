@@ -29,7 +29,7 @@ const App = () => {
     <div className={wrapper}>
       <MainGrid data={data} itemsListing={itemsListing} setItemsListing={setItemsListing} />
 
-      <Cart itemsListing={itemsListing} data={data} />
+      <Cart itemsListing={itemsListing} setItemsListing={setItemsListing} data={data} />
     </div>
   );
 };

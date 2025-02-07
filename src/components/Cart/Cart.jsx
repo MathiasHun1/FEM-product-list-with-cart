@@ -4,8 +4,10 @@ import styles from './Cart.module.css';
 import List from '../List/List';
 import ListItem from '../List-Item/ListItem';
 import ButtonConfirm from '../Button-confirm/ButtonConfirm';
+import _, { update } from 'lodash';
+import helpers from '../../utils';
 
-const Cart = ({ itemsListing, data }) => {
+const Cart = ({ itemsListing, setItemsListing, data }) => {
   const {
     cart_wrapper,
     empty_cart,
@@ -19,6 +21,7 @@ const Cart = ({ itemsListing, data }) => {
     neutral_text,
     neutral_span,
   } = styles;
+
   const [isEmpty, setIsEmpty] = useState(true);
   const [itemsInCart, setItemsInCart] = useState([]);
 
@@ -39,6 +42,7 @@ const Cart = ({ itemsListing, data }) => {
     }
   };
 
+  // Create an array of cart items and set them to state
   const updateCart = (itemsListing, data) => {
     // filter out picked items from listing
     const pickedItems = itemsListing.filter((i) => i.timesPicked !== 0);
@@ -62,6 +66,11 @@ const Cart = ({ itemsListing, data }) => {
     setItemsInCart(mergedItems);
   };
 
+  const removeFromCart = (itemName) => {
+    const updatedItemsListings = helpers.setPickedValue(itemsListing, itemName, 0);
+    setItemsListing(updatedItemsListings);
+  };
+
   return (
     <div className={cart_wrapper}>
       <h2 className={cart_title}>Your Cart {`(${cartItemCount})`}</h2>
@@ -77,12 +86,19 @@ const Cart = ({ itemsListing, data }) => {
         <>
           <List>
             {itemsInCart.map((item) => (
-              <ListItem itemName={item.name} price={item.price} quantity={item.quantity} image={item.image} />
+              <ListItem
+                key={item.name}
+                itemName={item.name}
+                price={item.price}
+                quantity={item.quantity}
+                image={item.image}
+                removeFromCart={removeFromCart}
+              />
             ))}
 
             <div className={total_wrapper}>
               <p className={total_text}>Order Total</p>
-              <p className={total_value}>${totalPrice}</p>
+              <p className={total_value}>${totalPrice.toFixed(2)}</p>
             </div>
           </List>
 

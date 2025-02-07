@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { v4 as uuidv4 } from 'uuid';
 
 const fixPath = (pathsObject) => {
@@ -21,9 +22,11 @@ const createItemListing = (data) => {
 };
 
 const setPickedValue = (itemListing, itemName, addedCount) => {
-  const item = itemListing.find((i) => i.itemKey === itemName);
+  const itemListingCopy = _.cloneDeep(itemListing);
+  const item = itemListingCopy.find((i) => i.itemKey === itemName);
 
   item.timesPicked = addedCount;
+  return itemListingCopy;
 };
 
 export default {

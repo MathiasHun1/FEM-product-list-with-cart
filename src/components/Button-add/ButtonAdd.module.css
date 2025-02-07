@@ -1,13 +1,16 @@
 .add_button {
+  font-size: var(--fs-S);
+  font-weight: var(--fw-semi-bold);
   background: var(--clr-white);
   border: 2px solid var(--clr-rose-400);
   border-radius: 999px;
   padding: var(--spacing-150);
   width: 50%;
+  min-width: 140px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8;
+  gap: var(--spacing-100);
   position: absolute;
   bottom: 0;
   left: 50%;
@@ -22,6 +25,10 @@
   width: 100%;
   display: flex;
   justify-content: space-around;
+  align-items: center;
+  font-size: var(--fs-S);
+  font-weight: var(--fw-semi-bold);
+  color: var(--clr-white);
 }
 
 .icon {

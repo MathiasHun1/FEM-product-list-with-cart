@@ -8,3 +8,8 @@
 .picture {
   border-radius: 8px;
 }
+
+.active {
+  border: 3px solid var(--clr-red);
+  border-radius: 8px;
+}
