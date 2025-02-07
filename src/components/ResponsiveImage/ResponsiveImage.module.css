@@ -1,6 +1,6 @@
 .image_wrapper {
-  width: 500;
-  height: 500;
+  width: fit-content;
+  max-width: 350px;
   margin-bottom: var(--spacing-500);
   position: relative;
 }
@@ -10,6 +10,6 @@
 }
 
 .active {
-  border: 3px solid var(--clr-red);
+  outline: 3px solid var(--clr-red);
   border-radius: 8px;
 }

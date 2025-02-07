@@ -47,7 +47,7 @@ const ButtonAdd = ({ cardData, itemsListing, setItemsListing, isActive, setIsAct
     <button className={`${add_button} ${isActive ? red : ''}`} onClick={handleButtonClick}>
       {!isActive && (
         <>
-          <img src="/images/icon-add-to-cart.svg" alt="" />
+          <img src="/images/icon-add-to-cart.svg" alt="" style={{ color: 'black' }} />
           Add to Cart
         </>
       )}

@@ -74,6 +74,7 @@ body {
 
 #root {
   min-height: 100%;
-  display: flex;
-  justify-content: center;
+  background: var(--clr-rose-50);
+  display: grid;
+  place-items: center;
 }

@@ -5,6 +5,11 @@
   flex-direction: column;
   gap: 24px;
   border-radius: 12px;
+  min-width: 350px;
+  max-width: 800px;
+  flex-grow: 1;
+  flex-shrink: 1;
+  height: fit-content;
 }
 
 .empty_cart {
@@ -69,4 +74,10 @@
 
 .neutral_span {
   font-weight: var(--fw-semi-bold);
+}
+
+@media (max-width: 600px) {
+  .cart_wrapper {
+    min-width: 200px;
+  }
 }

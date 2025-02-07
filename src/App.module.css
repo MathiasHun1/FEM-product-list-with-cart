@@ -1,11 +1,13 @@
 .wrapper {
   min-height: 100%;
+  max-width: 1350px;
   padding: var(--spacing-300);
   background: var(--clr-rose-50);
   font-family: var(--ff-base);
-  max-width: 500px;
-
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: var(--spacing-400);
+
+  width: 100%;
 }

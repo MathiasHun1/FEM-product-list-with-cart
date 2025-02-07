@@ -44,11 +44,34 @@
   margin-block: var(--spacing-200);
 }
 
-.delete_button {
-  padding: 0;
+.button_wrapper {
+  background-color: inherit;
+  width: 40px;
+  height: 40px;
   position: absolute;
   right: 0;
   top: 50%;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+}
+
+.button_wrapper:hover {
+  cursor: pointer;
+}
+
+.button_wrapper:hover .delete_button {
+  border-color: var(--clr-black);
+  cursor: pointer;
+}
+
+.button_wrapper:hover .icon {
+  color: var(--clr-black);
+}
+
+.delete_button {
+  padding: 0;
   border-radius: 50%;
   width: 20px;
   height: 20px;
@@ -57,10 +80,13 @@
   align-items: center;
   border: 1px solid var(--clr-rose-400);
   background: inherit;
-  transform: translateY(-50%);
 }
 
-.delete_icon {
-  display: block;
-  width: 60%;
+.icon {
+  color: var(--clr-rose-400);
+  position: relative;
+}
+
+.icon:hover {
+  color: var(--clr-black);
 }
