@@ -5,7 +5,6 @@ import _ from 'lodash';
 
 const ButtonAdd = ({ cardData, itemsListing, setItemsListing, isActive, setIsActive }) => {
   const { add_button, quantity_wrapper, icon, red } = styles;
-  // const [isActive, setIsActive] = useState(false);
   const [pickCount, setPickCount] = useState(0);
 
   useEffect(() => {
@@ -23,6 +22,9 @@ const ButtonAdd = ({ cardData, itemsListing, setItemsListing, isActive, setIsAct
   }, [pickCount]);
 
   const handleButtonClick = () => {
+    if (isActive && pickCount > 0) {
+      return;
+    }
     setIsActive(!isActive);
   };
 
