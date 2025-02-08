@@ -2,8 +2,10 @@ import styles from './ButtonConfirm.module.css';
 
 const ButtonConfirm = ({ text = '', setModalOpen, modalOpen }) => {
   const handleClick = () => {
-    setModalOpen(!modalOpen);
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(() => {
+      setModalOpen(!modalOpen);
+    }, 200);
   };
 
   return (

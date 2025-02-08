@@ -1,9 +1,7 @@
 import styles from './Modal.module.css';
 import confirmSvg from './icon-order-confirmed.svg';
-import helpers from '../../utils';
 
 import ListItem from '../List-Item/ListItem';
-import ButtonConfirm from '../Button-confirm/ButtonConfirm';
 import _ from 'lodash';
 import { useEffect, useState } from 'react';
 
