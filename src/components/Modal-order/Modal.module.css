@@ -9,6 +9,8 @@
   z-index: 100;
   display: grid;
   place-items: center;
+  opacity: 0;
+  transition: opacity 200ms ease-in-out;
 }
 
 .modal_wrapper {
@@ -60,4 +62,25 @@
 .total_value {
   font-size: var(--fs-L);
   font-weight: var(--fw-bold);
+}
+
+.button {
+  background: var(--clr-red);
+  padding: var(--spacing-200);
+  display: grid;
+  place-items: center;
+  color: var(--clr-white);
+  font-size: var(--fs-M);
+  font-weight: var(--fw-semi-bold);
+  border-radius: 9999px;
+  border: none;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.visible {
+  opacity: 1;
+  transition: opacity 200ms ease-in-out;
 }

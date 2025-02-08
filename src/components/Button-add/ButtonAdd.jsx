@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import _ from 'lodash';
 
 const ButtonAdd = ({ cardData, itemsListing, setItemsListing, isActive, setIsActive }) => {
-  const { add_button, quantity_wrapper, icon, red } = styles;
+  const { add_button, quantity_wrapper, icon, red, clickable } = styles;
   const [pickCount, setPickCount] = useState(0);
 
   useEffect(() => {
@@ -56,10 +56,12 @@ const ButtonAdd = ({ cardData, itemsListing, setItemsListing, isActive, setIsAct
         <div className={quantity_wrapper}>
           <div className={icon} onClick={(e) => handleDecrement(e)}>
             <img src="/images/icon-decrement-quantity.svg" alt="" />
+            <div className={clickable}></div>
           </div>
           {pickCount}
           <div className={icon} onClick={(e) => handleIncrement(e)}>
             <img src="/images/icon-increment-quantity.svg" alt="" />
+            <div className={clickable}></div>
           </div>
         </div>
       )}

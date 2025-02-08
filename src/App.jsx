@@ -16,7 +16,7 @@ const App = () => {
   const [itemsInCart, setItemsInCart] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
 
-  // loading initial data
+  // create initial data from fetched items, for tracking the orders
   useEffect(() => {
     services.getAll().then((res) => {
       setData(res);
@@ -24,9 +24,6 @@ const App = () => {
       setItemsListing(listing);
     });
   }, []);
-
-  // logging cart state for debug
-  useEffect(() => {}, [itemsListing]);
 
   return (
     <div className={wrapper}>
@@ -42,7 +39,15 @@ const App = () => {
         modalOpen={modalOpen}
       />
 
-      <Modal itemsInCart={itemsInCart} modalOpen={modalOpen} setModalOpen={setModalOpen} />
+      <Modal
+        itemsInCart={itemsInCart}
+        modalOpen={modalOpen}
+        setModalOpen={setModalOpen}
+        data={data}
+        itemsListing={itemsListing}
+        setItemsListing={setItemsListing}
+        setItemsInCart={setItemsInCart}
+      />
     </div>
   );
 };

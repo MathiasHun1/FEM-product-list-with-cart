@@ -1,18 +1,44 @@
 import styles from './Modal.module.css';
 import confirmSvg from './icon-order-confirmed.svg';
+import helpers from '../../utils';
 
 import ListItem from '../List-Item/ListItem';
 import ButtonConfirm from '../Button-confirm/ButtonConfirm';
+import _ from 'lodash';
+import { useEffect, useState } from 'react';
 
-const Modal = ({ itemsInCart, modalOpen, setModalOpen }) => {
+const Modal = ({ itemsInCart, modalOpen, setModalOpen, itemsListing, setItemsListing }) => {
+  const [isVisible, setVisible] = useState(false);
+
+  useEffect(() => {
+    if (modalOpen) {
+      setTimeout(() => {
+        setVisible(true);
+      }, 100);
+    } else {
+      setVisible(false);
+    }
+  }, [modalOpen]);
+
+  const handleConfirm = () => {
+    const itemsListingCopy = _.cloneDeep(itemsListing);
+    itemsListingCopy.forEach((item) => (item.timesPicked = 0));
+
+    setVisible(false);
+    setTimeout(() => {
+      setItemsListing(itemsListingCopy);
+      setModalOpen(!modalOpen);
+    }, 200);
+  };
+
+  const totalPrice = itemsInCart.reduce((prev, item) => prev + item.price * item.quantity, 0).toFixed(2);
+
   if (!modalOpen) {
     return null;
   }
 
-  const totalPrice = itemsInCart.reduce((prev, item) => prev + item.price * item.quantity, 0).toFixed(2);
-
   return (
-    <div className={styles.overlay}>
+    <div className={`${styles.overlay} ${isVisible ? styles.visible : ''}`}>
       <div className={styles.modal_wrapper}>
         <div className={styles.modal_header}>
           <img className={styles.modal_icon} src={confirmSvg} alt="" />
@@ -39,7 +65,9 @@ const Modal = ({ itemsInCart, modalOpen, setModalOpen }) => {
           </div>
         </div>
 
-        <ButtonConfirm text="Start new order" modalOpen={modalOpen} setModalOpen={setModalOpen} />
+        <button className={styles.button} onClick={handleConfirm}>
+          Start New Order
+        </button>
       </div>
     </div>
   );
