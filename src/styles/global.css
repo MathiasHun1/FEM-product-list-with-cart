@@ -77,4 +77,5 @@ body {
   background: var(--clr-rose-50);
   display: grid;
   place-items: center;
+  position: relative;
 }

@@ -84,3 +84,11 @@
   opacity: 1;
   transition: opacity 200ms ease-in-out;
 }
+
+@media (max-width: 500px) {
+  .overlay {
+    position: absolute;
+    place-items: start;
+    top: 0;
+  }
+}
