@@ -1,9 +1,19 @@
 .list_item {
   list-style-type: none;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-200);
 }
 
 .inner_wrapper {
   position: relative;
+  width: 100%;
+}
+
+.thumbnail {
+  width: 48px;
+  height: 48px;
+  border-radius: 4px;
 }
 
 .title {
@@ -35,6 +45,14 @@
   color: var(--clr-rose-500);
   font-size: var(--fs-S);
   font-weight: var(--fw-semi-bold);
+}
+
+.final_wrapper {
+  position: absolute;
+  width: fit-content;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .spacer {

@@ -4,10 +4,10 @@ import styles from './Cart.module.css';
 import List from '../List/List';
 import ListItem from '../List-Item/ListItem';
 import ButtonConfirm from '../Button-confirm/ButtonConfirm';
-import _, { update } from 'lodash';
+import _ from 'lodash';
 import helpers from '../../utils';
 
-const Cart = ({ itemsListing, setItemsListing, data }) => {
+const Cart = ({ itemsListing, setItemsListing, data, itemsInCart, setItemsInCart, setModalOpen, modalOpen }) => {
   const {
     cart_wrapper,
     empty_cart,
@@ -23,7 +23,6 @@ const Cart = ({ itemsListing, setItemsListing, data }) => {
   } = styles;
 
   const [isEmpty, setIsEmpty] = useState(true);
-  const [itemsInCart, setItemsInCart] = useState([]);
 
   const cartItemCount = itemsInCart ? itemsInCart.reduce((prev, item) => prev + item.quantity, 0) : 0;
 
@@ -57,6 +56,7 @@ const Cart = ({ itemsListing, setItemsListing, data }) => {
             price: dataElement.price,
             image: dataElement.image.thumbnail,
             quantity: pickedItem.timesPicked,
+            id: pickedItem.id,
           };
           mergedItems.push(mergedItem);
         }
@@ -87,12 +87,13 @@ const Cart = ({ itemsListing, setItemsListing, data }) => {
           <List>
             {itemsInCart.map((item) => (
               <ListItem
-                key={item.name}
+                key={item.id}
                 itemName={item.name}
                 price={item.price}
                 quantity={item.quantity}
                 image={item.image}
                 removeFromCart={removeFromCart}
+                type="in-cart"
               />
             ))}
 
@@ -109,7 +110,7 @@ const Cart = ({ itemsListing, setItemsListing, data }) => {
             </p>
           </div>
 
-          <ButtonConfirm />
+          <ButtonConfirm text={'Confirm Order'} setModalOpen={setModalOpen} modalOpen={modalOpen} />
         </>
       )}
     </div>
