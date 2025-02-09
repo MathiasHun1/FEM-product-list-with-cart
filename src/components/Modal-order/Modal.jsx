@@ -5,7 +5,7 @@ import ListItem from '../List-Item/ListItem';
 import _ from 'lodash';
 import { useEffect, useState } from 'react';
 
-const Modal = ({ itemsInCart, modalOpen, setModalOpen, itemsListing, setItemsListing }) => {
+const Modal = ({ itemsInCart, modalOpen, setModalOpen, items, setItems }) => {
   const [isVisible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -19,17 +19,17 @@ const Modal = ({ itemsInCart, modalOpen, setModalOpen, itemsListing, setItemsLis
   }, [modalOpen]);
 
   const handleConfirm = () => {
-    const itemsListingCopy = _.cloneDeep(itemsListing);
-    itemsListingCopy.forEach((item) => (item.timesPicked = 0));
+    const itemsCopy = _.cloneDeep(items);
+    itemsCopy.forEach((i) => (i.timesPicked = 0));
 
     setVisible(false);
     setTimeout(() => {
-      setItemsListing(itemsListingCopy);
+      setItems(itemsCopy);
       setModalOpen(!modalOpen);
     }, 200);
   };
 
-  const totalPrice = itemsInCart.reduce((prev, item) => prev + item.price * item.quantity, 0).toFixed(2);
+  const totalPrice = itemsInCart.reduce((prev, item) => prev + item.price * item.timesPicked, 0).toFixed(2);
 
   if (!modalOpen) {
     return null;
@@ -51,8 +51,8 @@ const Modal = ({ itemsInCart, modalOpen, setModalOpen, itemsListing, setItemsLis
                 key={item.id}
                 itemName={item.name}
                 price={item.price}
-                quantity={item.quantity}
-                image={item.image}
+                quantity={item.timesPicked}
+                image={item.image.thumbnail}
                 type="ordered"
               />
             ))}

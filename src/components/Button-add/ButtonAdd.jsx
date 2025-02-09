@@ -3,26 +3,17 @@ import helpers from '../../utils';
 import { useEffect, useState } from 'react';
 import _ from 'lodash';
 
-const ButtonAdd = ({ cardData, itemsListing, setItemsListing, isActive, setIsActive }) => {
+const ButtonAdd = ({ cardData, items, setItems, isActive, setIsActive }) => {
   const { add_button, quantity_wrapper, icon, red, clickable } = styles;
-  const [pickCount, setPickCount] = useState(0);
 
   useEffect(() => {
-    const value = itemsListing.find((i) => i.itemKey === cardData.name).timesPicked;
-    setPickCount(value);
-
-    if (value === 0) {
+    if (cardData.timesPicked === 0) {
       setIsActive(false);
     }
-  }, [itemsListing]);
-
-  useEffect(() => {
-    const updatedItemsListing = helpers.setPickedValue(itemsListing, cardData.name, pickCount);
-    setItemsListing(updatedItemsListing);
-  }, [pickCount]);
+  }, [items]);
 
   const handleButtonClick = () => {
-    if (isActive && pickCount > 0) {
+    if (isActive && cardData.timesPicked > 0) {
       return;
     }
     setIsActive(!isActive);
@@ -30,17 +21,25 @@ const ButtonAdd = ({ cardData, itemsListing, setItemsListing, isActive, setIsAct
 
   const handleIncrement = (e) => {
     e.stopPropagation();
-    setPickCount(pickCount + 1);
+    const cardDataCopy = _.cloneDeep(cardData); // neccessary ?
+    cardDataCopy.timesPicked += 1;
+
+    const updatedItemsList = helpers.updateItemsList(items, cardDataCopy);
+
+    setItems(updatedItemsList);
   };
 
   const handleDecrement = (e) => {
     e.stopPropagation();
 
-    if (pickCount === 0) {
+    if (cardData.timesPicked === 0) {
       return;
     }
 
-    setPickCount(pickCount - 1);
+    const cardDataCopy = _.cloneDeep(cardData); // neccessary ?
+    cardDataCopy.timesPicked -= 1;
+    const updatedItemsList = helpers.updateItemsList(items, cardDataCopy);
+    setItems(updatedItemsList);
   };
 
   return (
@@ -58,7 +57,7 @@ const ButtonAdd = ({ cardData, itemsListing, setItemsListing, isActive, setIsAct
             <img src="/images/icon-decrement-quantity.svg" alt="" />
             <div className={clickable}></div>
           </div>
-          {pickCount}
+          {cardData.timesPicked}
           <div className={icon} onClick={(e) => handleIncrement(e)}>
             <img src="/images/icon-increment-quantity.svg" alt="" />
             <div className={clickable}></div>

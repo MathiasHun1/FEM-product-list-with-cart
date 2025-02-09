@@ -11,28 +11,25 @@ import Modal from './components/Modal-order/Modal';
 
 const App = () => {
   const { wrapper } = styles;
-  const [data, setData] = useState([]);
-  const [itemsListing, setItemsListing] = useState([]);
+  const [items, setItems] = useState([]);
   const [itemsInCart, setItemsInCart] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
 
   // create initial data from fetched items, for tracking the orders
   useEffect(() => {
     services.getAll().then((res) => {
-      setData(res);
-      const listing = helpers.createItemListing(res);
-      setItemsListing(listing);
+      const itemList = helpers.createItemListing(res);
+      setItems(itemList);
     });
   }, []);
 
   return (
     <div className={wrapper}>
-      <MainGrid data={data} itemsListing={itemsListing} setItemsListing={setItemsListing} />
+      <MainGrid items={items} setItems={setItems} />
 
       <Cart
-        itemsListing={itemsListing}
-        setItemsListing={setItemsListing}
-        data={data}
+        items={items}
+        setItems={setItems}
         itemsInCart={itemsInCart}
         setItemsInCart={setItemsInCart}
         setModalOpen={setModalOpen}
@@ -43,9 +40,8 @@ const App = () => {
         itemsInCart={itemsInCart}
         modalOpen={modalOpen}
         setModalOpen={setModalOpen}
-        data={data}
-        itemsListing={itemsListing}
-        setItemsListing={setItemsListing}
+        items={items}
+        setItems={setItems}
         setItemsInCart={setItemsInCart}
       />
     </div>

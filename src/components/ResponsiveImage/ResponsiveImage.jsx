@@ -4,7 +4,7 @@ import helpers from '../../utils';
 import ButtonAdd from '../Button-add/ButtonAdd';
 import { useState } from 'react';
 
-const ResponsiveImage = ({ cardData, itemsListing, setItemsListing }) => {
+const ResponsiveImage = ({ cardData, items, setItems }) => {
   const { image_wrapper, picture, active } = styles;
 
   const [isActive, setIsactive] = useState(false);
@@ -18,13 +18,7 @@ const ResponsiveImage = ({ cardData, itemsListing, setItemsListing }) => {
         <source media="(min-width: 1100px)" srcSet={images.desktop} />
         <img className={picture} src={images.thumbnail} alt="" />
       </picture>
-      <ButtonAdd
-        cardData={cardData}
-        itemsListing={itemsListing}
-        setItemsListing={setItemsListing}
-        isActive={isActive}
-        setIsActive={setIsactive}
-      />
+      <ButtonAdd cardData={cardData} items={items} setItems={setItems} isActive={isActive} setIsActive={setIsactive} />
     </div>
   );
 };

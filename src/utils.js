@@ -13,7 +13,7 @@ const fixPath = (pathsObject) => {
 const createItemListing = (data) => {
   const keys = data.map((item) => {
     return {
-      itemKey: item.name,
+      ...item,
       id: uuidv4(),
       timesPicked: 0,
     };
@@ -23,14 +23,25 @@ const createItemListing = (data) => {
 
 const setPickedValue = (itemListing, itemName, addedCount) => {
   const itemListingCopy = _.cloneDeep(itemListing);
-  const item = itemListingCopy.find((i) => i.itemKey === itemName);
+  const item = itemListingCopy.find((i) => i.name === itemName);
 
   item.timesPicked = addedCount;
   return itemListingCopy;
+};
+
+const updateItemsList = (itemsList, item) => {
+  const existingItemIndex = itemsList.findIndex((i) => i.id === item.id);
+
+  if (existingItemIndex === -1) {
+    return itemsList.concat(item);
+  }
+
+  return itemsList.map((i, index) => (index === existingItemIndex ? item : i));
 };
 
 export default {
   fixPath,
   createItemListing,
   setPickedValue,
+  updateItemsList,
 };

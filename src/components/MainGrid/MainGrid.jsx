@@ -2,10 +2,10 @@ import styles from './MainGrid.module.css';
 
 import Card from '../Card/Card';
 
-const MainGrid = ({ data, itemsListing, setItemsListing }) => {
+const MainGrid = ({ items, setItems }) => {
   const { main_grid, title, cards_grid } = styles;
 
-  if (!data || !itemsListing) {
+  if (!items) {
     return <p>Loading...</p>;
   }
 
@@ -14,8 +14,8 @@ const MainGrid = ({ data, itemsListing, setItemsListing }) => {
       <h1 className={title}>Desserts</h1>
 
       <div className={cards_grid}>
-        {data.map((card) => (
-          <Card key={card.name} cardData={card} itemsListing={itemsListing} setItemsListing={setItemsListing} />
+        {items.map((card) => (
+          <Card key={card.name} cardData={card} items={items} setItems={setItems} />
         ))}
       </div>
     </div>

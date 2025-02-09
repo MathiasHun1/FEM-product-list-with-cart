@@ -7,7 +7,7 @@ import ButtonConfirm from '../Button-confirm/ButtonConfirm';
 import _ from 'lodash';
 import helpers from '../../utils';
 
-const Cart = ({ itemsListing, setItemsListing, data, itemsInCart, setItemsInCart, setModalOpen, modalOpen }) => {
+const Cart = ({ items, setItems, itemsInCart, setItemsInCart, setModalOpen, modalOpen }) => {
   const {
     cart_wrapper,
     empty_cart,
@@ -24,51 +24,32 @@ const Cart = ({ itemsListing, setItemsListing, data, itemsInCart, setItemsInCart
 
   const [isEmpty, setIsEmpty] = useState(true);
 
-  const cartItemCount = itemsInCart ? itemsInCart.reduce((prev, item) => prev + item.quantity, 0) : 0;
+  const cartItemCount = itemsInCart ? itemsInCart.reduce((prev, item) => prev + item.timesPicked, 0) : 0;
 
-  const totalPrice = itemsInCart ? itemsInCart.reduce((prev, item) => prev + item.quantity * item.price, 0) : 0;
+  const totalPrice = itemsInCart ? itemsInCart.reduce((prev, item) => prev + item.timesPicked * item.price, 0) : 0;
 
   useEffect(() => {
     initCartState();
-    updateCart(itemsListing, data);
-  }, [itemsListing]);
+    updateCart(items);
+  }, [items]);
 
   const initCartState = () => {
-    if (itemsListing.every((i) => i.timesPicked === 0)) {
+    if (items.every((i) => i.timesPicked === 0)) {
       setIsEmpty(true);
     } else {
       setIsEmpty(false);
     }
   };
 
-  // Create an array of cart items and set them to state
-  const updateCart = (itemsListing, data) => {
-    // filter out picked items from listing
-    const pickedItems = itemsListing.filter((i) => i.timesPicked !== 0);
+  const updateCart = (items) => {
+    const pickedItems = items.filter((i) => i.timesPicked !== 0);
 
-    let mergedItems = [];
-    // merge the needed data for every picked item
-    data.forEach((dataElement) => {
-      pickedItems.forEach((pickedItem) => {
-        if (dataElement.name === pickedItem.itemKey) {
-          const mergedItem = {
-            name: dataElement.name,
-            price: dataElement.price,
-            image: dataElement.image.thumbnail,
-            quantity: pickedItem.timesPicked,
-            id: pickedItem.id,
-          };
-          mergedItems.push(mergedItem);
-        }
-      });
-    });
-
-    setItemsInCart(mergedItems);
+    setItemsInCart(pickedItems);
   };
 
   const removeFromCart = (itemName) => {
-    const updatedItemsListings = helpers.setPickedValue(itemsListing, itemName, 0);
-    setItemsListing(updatedItemsListings);
+    const updatedItems = helpers.setPickedValue(items, itemName, 0);
+    setItems(updatedItems);
   };
 
   return (
@@ -90,8 +71,8 @@ const Cart = ({ itemsListing, setItemsListing, data, itemsInCart, setItemsInCart
                 key={item.id}
                 itemName={item.name}
                 price={item.price}
-                quantity={item.quantity}
-                image={item.image}
+                quantity={item.timesPicked}
+                image={item.image.thumbnail}
                 removeFromCart={removeFromCart}
                 type="in-cart"
               />
