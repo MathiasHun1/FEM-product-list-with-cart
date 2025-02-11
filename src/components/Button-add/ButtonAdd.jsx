@@ -1,32 +1,26 @@
 import styles from './ButtonAdd.module.css';
-import helpers from '../../utils';
 import { useContext, useEffect } from 'react';
 import _ from 'lodash';
 
 import { Context } from '../../contexts/ItemsContext';
 
-const ButtonAdd = ({ cardData, isActive, setActive }) => {
+const ButtonAdd = ({ item, isActive, setActive }) => {
   const { add_button, quantity_wrapper, icon, red, clickable } = styles;
-  const { items, setItems } = useContext(Context);
+  const { dispatch } = useContext(Context);
 
   useEffect(() => {
-    if (cardData.timesPicked === 0) {
+    if (item.timesPicked === 0) {
       setActive(false);
     }
-  }, [cardData]);
+  }, [item]);
 
   const handleButtonClick = () => {
-    if (isActive && cardData.timesPicked > 0) {
+    if (isActive && item.timesPicked > 0) {
       return;
     }
 
-    if (!isActive && cardData.timesPicked === 0) {
-      const cardDataCopy = _.cloneDeep(cardData);
-      cardDataCopy.timesPicked += 1;
-
-      const updatedItemsList = helpers.updateItemsList(items, cardDataCopy);
-
-      setItems(updatedItemsList);
+    if (!isActive && item.timesPicked === 0) {
+      dispatch({ type: 'increment', payload: { id: item.id } });
     }
 
     setActive(true);
@@ -34,25 +28,17 @@ const ButtonAdd = ({ cardData, isActive, setActive }) => {
 
   const handleIncrement = (e) => {
     e.stopPropagation();
-    const cardDataCopy = _.cloneDeep(cardData);
-    cardDataCopy.timesPicked += 1;
-
-    const updatedItemsList = helpers.updateItemsList(items, cardDataCopy);
-
-    setItems(updatedItemsList);
+    dispatch({ type: 'increment', payload: { id: item.id } });
   };
 
   const handleDecrement = (e) => {
     e.stopPropagation();
 
-    if (cardData.timesPicked === 0) {
+    if (item.timesPicked === 0) {
       return;
     }
 
-    const cardDataCopy = _.cloneDeep(cardData); // neccessary ?
-    cardDataCopy.timesPicked -= 1;
-    const updatedItemsList = helpers.updateItemsList(items, cardDataCopy);
-    setItems(updatedItemsList);
+    dispatch({ type: 'decrement', payload: { id: item.id } });
   };
 
   return (
@@ -70,7 +56,7 @@ const ButtonAdd = ({ cardData, isActive, setActive }) => {
             <img src="/images/icon-decrement-quantity.svg" alt="" />
             <div className={clickable}></div>
           </div>
-          {cardData.timesPicked}
+          {item.timesPicked}
           <div className={icon} onClick={(e) => handleIncrement(e)}>
             <img src="/images/icon-increment-quantity.svg" alt="" />
             <div className={clickable}></div>

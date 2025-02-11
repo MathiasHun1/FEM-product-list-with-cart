@@ -1,6 +1,6 @@
 import styles from './ListItem.module.css';
 
-const ListItem = ({ itemName, price, quantity, image, removeFromCart, type }) => {
+const ListItem = ({ itemName, price, id, quantity, image, removeFromCart, type }) => {
   if (type !== 'in-cart' && type !== 'ordered') {
     console.error('Must specify a type for a list-item element!');
   }
@@ -23,7 +23,7 @@ const ListItem = ({ itemName, price, quantity, image, removeFromCart, type }) =>
           </div>
 
           {cartType && (
-            <div className={styles.button_wrapper} onClick={() => removeFromCart(itemName)}>
+            <div className={styles.button_wrapper} onClick={() => removeFromCart(id)}>
               <button className={styles.delete_button}>
                 <svg
                   className={styles.icon}

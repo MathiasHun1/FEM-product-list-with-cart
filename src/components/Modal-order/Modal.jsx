@@ -8,7 +8,7 @@ import { Context } from '../../contexts/ItemsContext';
 
 const Modal = () => {
   const [isVisible, setVisible] = useState(false);
-  const { itemsInCart, modalOpen, setModalOpen, items, setItems } = useContext(Context);
+  const { itemsInCart, modalOpen, setModalOpen, items, dispatch } = useContext(Context);
 
   useEffect(() => {
     if (modalOpen) {
@@ -21,12 +21,9 @@ const Modal = () => {
   }, [modalOpen]);
 
   const handleConfirm = () => {
-    const itemsCopy = _.cloneDeep(items);
-    itemsCopy.forEach((i) => (i.timesPicked = 0));
-
     setVisible(false);
     setTimeout(() => {
-      setItems(itemsCopy);
+      dispatch({ type: 'reset' });
       setModalOpen(!modalOpen);
     }, 200);
   };

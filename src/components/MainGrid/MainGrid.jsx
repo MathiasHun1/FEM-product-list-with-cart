@@ -16,8 +16,8 @@ const MainGrid = () => {
       <h1 className={styles.title}>Desserts</h1>
 
       <div className={styles.cards_grid}>
-        {items.map((card) => (
-          <Card key={card.id} cardData={card} />
+        {items.map((item) => (
+          <Card key={item.id} item={item} />
         ))}
       </div>
     </div>

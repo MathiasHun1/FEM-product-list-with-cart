@@ -37,6 +37,7 @@ const setPickedValue = (itemListing, itemName, addedCount) => {
 const updateItemsList = (itemsList, item) => {
   const existingItemIndex = itemsList.findIndex((i) => i.id === item.id);
 
+  //append if item not exist yet
   if (existingItemIndex === -1) {
     return itemsList.concat(item);
   }

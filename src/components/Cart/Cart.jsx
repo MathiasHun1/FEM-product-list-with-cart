@@ -4,8 +4,6 @@ import styles from './Cart.module.css';
 import List from '../List/List';
 import ListItem from '../List-Item/ListItem';
 import ButtonConfirm from '../Button-confirm/ButtonConfirm';
-import _ from 'lodash';
-import helpers from '../../utils';
 
 import { Context } from '../../contexts/ItemsContext';
 
@@ -24,7 +22,7 @@ const Cart = () => {
     neutral_span,
   } = styles;
 
-  const { items, setItems, itemsInCart } = useContext(Context);
+  const { items, dispatch, itemsInCart } = useContext(Context);
   const [isEmpty, setIsEmpty] = useState(true);
 
   const cartItemCount = itemsInCart ? itemsInCart.reduce((prev, item) => prev + item.timesPicked, 0) : 0;
@@ -43,9 +41,8 @@ const Cart = () => {
     }
   };
 
-  const removeFromCart = (itemName) => {
-    const updatedItems = helpers.setPickedValue(items, itemName, 0);
-    setItems(updatedItems);
+  const removeFromCart = (id) => {
+    dispatch({ type: 'remove', payload: { id: id } });
   };
 
   return (
@@ -66,6 +63,7 @@ const Cart = () => {
               <ListItem
                 key={item.id}
                 itemName={item.name}
+                id={item.id}
                 price={item.price}
                 quantity={item.timesPicked}
                 image={item.image.thumbnail}
