@@ -6,9 +6,8 @@ const ButtonConfirm = ({ text = '' }) => {
   const { modalOpen, setModalOpen } = useContext(Context);
 
   const handleClick = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
     setTimeout(() => {
-      setModalOpen(!modalOpen);
+      setModalOpen(true);
     }, 200);
   };
 

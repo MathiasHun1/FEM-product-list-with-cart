@@ -87,8 +87,9 @@
 
 @media (max-width: 500px) {
   .overlay {
-    position: absolute;
+    position: fixed;
     place-items: start;
     top: 0;
+    overflow: scroll;
   }
 }

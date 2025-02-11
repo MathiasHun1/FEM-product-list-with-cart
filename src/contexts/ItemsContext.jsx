@@ -10,8 +10,6 @@ const ContextProvider = ({ children }) => {
   const [itemsInCart, setItemsInCart] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
 
-  console.log(items);
-
   useEffect(() => {
     services.getAll().then((result) => {
       dispatch({ type: 'setAll', payload: result });

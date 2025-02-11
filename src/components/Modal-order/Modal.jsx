@@ -8,7 +8,7 @@ import { Context } from '../../contexts/ItemsContext';
 
 const Modal = () => {
   const [isVisible, setVisible] = useState(false);
-  const { itemsInCart, modalOpen, setModalOpen, items, dispatch } = useContext(Context);
+  const { itemsInCart, modalOpen, setModalOpen, dispatch } = useContext(Context);
 
   useEffect(() => {
     if (modalOpen) {
@@ -24,7 +24,7 @@ const Modal = () => {
     setVisible(false);
     setTimeout(() => {
       dispatch({ type: 'reset' });
-      setModalOpen(!modalOpen);
+      setModalOpen(false);
     }, 200);
   };
 
@@ -35,7 +35,7 @@ const Modal = () => {
   }
 
   return (
-    <div className={`${styles.overlay} ${isVisible ? styles.visible : ''}`}>
+    <div className={`${styles.overlay} ${isVisible ? styles.visible : ''}`} onClick={handleConfirm}>
       <div className={styles.modal_wrapper}>
         <div className={styles.modal_header}>
           <img className={styles.modal_icon} src={confirmSvg} alt="" />
