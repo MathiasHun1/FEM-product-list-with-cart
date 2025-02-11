@@ -10,15 +10,20 @@ const fixPath = (pathsObject) => {
   return pathsCopy;
 };
 
-const createItemListing = (data) => {
-  const keys = data.map((item) => {
+const createItemsList = (rawData) => {
+  const transformedData = rawData.map((item) => {
     return {
       ...item,
       id: uuidv4(),
       timesPicked: 0,
     };
   });
-  return keys;
+
+  transformedData.forEach((item) => {
+    item.image = fixPath(item.image);
+  });
+
+  return transformedData;
 };
 
 const setPickedValue = (itemListing, itemName, addedCount) => {
@@ -41,7 +46,7 @@ const updateItemsList = (itemsList, item) => {
 
 export default {
   fixPath,
-  createItemListing,
+  createItemsList,
   setPickedValue,
   updateItemsList,
 };

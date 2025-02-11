@@ -1,3 +1,10 @@
 .card_wrapper {
   width: fit-content;
 }
+
+.image_wrapper {
+  width: fit-content;
+  max-width: 350px;
+  margin-bottom: var(--spacing-500);
+  position: relative;
+}

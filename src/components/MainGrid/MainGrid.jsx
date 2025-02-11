@@ -1,9 +1,12 @@
+import { useContext } from 'react';
+import ItemsContext from '../../contexts/ItemsContext';
 import styles from './MainGrid.module.css';
 
 import Card from '../Card/Card';
 
-const MainGrid = ({ items, setItems }) => {
-  const { main_grid, title, cards_grid } = styles;
+const MainGrid = () => {
+  const { main_grid, title, cards_grid, image_wrapper } = styles;
+  const { items } = useContext(ItemsContext);
 
   if (!items) {
     return <p>Loading...</p>;
@@ -15,7 +18,7 @@ const MainGrid = ({ items, setItems }) => {
 
       <div className={cards_grid}>
         {items.map((card) => (
-          <Card key={card.name} cardData={card} items={items} setItems={setItems} />
+          <Card key={card.id} cardData={card} />
         ))}
       </div>
     </div>

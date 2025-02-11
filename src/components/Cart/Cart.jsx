@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import styles from './Cart.module.css';
 
 import List from '../List/List';
@@ -7,7 +7,9 @@ import ButtonConfirm from '../Button-confirm/ButtonConfirm';
 import _ from 'lodash';
 import helpers from '../../utils';
 
-const Cart = ({ items, setItems, itemsInCart, setItemsInCart, setModalOpen, modalOpen }) => {
+import ItemsContext from '../../contexts/ItemsContext';
+
+const Cart = () => {
   const {
     cart_wrapper,
     empty_cart,
@@ -22,6 +24,7 @@ const Cart = ({ items, setItems, itemsInCart, setItemsInCart, setModalOpen, moda
     neutral_span,
   } = styles;
 
+  const { items, setItems, itemsInCart, setItemsInCart } = useContext(ItemsContext);
   const [isEmpty, setIsEmpty] = useState(true);
 
   const cartItemCount = itemsInCart ? itemsInCart.reduce((prev, item) => prev + item.timesPicked, 0) : 0;
@@ -91,7 +94,7 @@ const Cart = ({ items, setItems, itemsInCart, setItemsInCart, setModalOpen, moda
             </p>
           </div>
 
-          <ButtonConfirm text={'Confirm Order'} setModalOpen={setModalOpen} modalOpen={modalOpen} />
+          <ButtonConfirm text={'Confirm Order'} />
         </>
       )}
     </div>

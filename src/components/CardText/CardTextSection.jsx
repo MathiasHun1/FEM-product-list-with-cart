@@ -1,7 +1,8 @@
 import styles from './CardTextSection.module.css';
 
-const CardTextSection = ({ category, name, price }) => {
+const CardTextSection = ({ cardData }) => {
   const { text_wrapper, card_category, card_name, card_price } = styles;
+  const { category, name, price } = cardData;
 
   return (
     <div className={text_wrapper}>

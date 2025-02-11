@@ -1,22 +1,35 @@
 import styles from './ButtonAdd.module.css';
 import helpers from '../../utils';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import _ from 'lodash';
 
-const ButtonAdd = ({ cardData, items, setItems, isActive, setIsActive }) => {
+import ItemsContext from '../../contexts/ItemsContext';
+
+const ButtonAdd = ({ cardData, isActive, setActive }) => {
   const { add_button, quantity_wrapper, icon, red, clickable } = styles;
+  const { items, setItems } = useContext(ItemsContext);
 
   useEffect(() => {
     if (cardData.timesPicked === 0) {
-      setIsActive(false);
+      setActive(false);
     }
-  }, [items]);
+  }, [cardData]);
 
   const handleButtonClick = () => {
     if (isActive && cardData.timesPicked > 0) {
       return;
     }
-    setIsActive(!isActive);
+
+    if (!isActive && cardData.timesPicked === 0) {
+      const cardDataCopy = _.cloneDeep(cardData); // neccessary ?
+      cardDataCopy.timesPicked += 1;
+
+      const updatedItemsList = helpers.updateItemsList(items, cardDataCopy);
+
+      setItems(updatedItemsList);
+    }
+
+    setActive(true);
   };
 
   const handleIncrement = (e) => {
