@@ -15,11 +15,24 @@ const ContextProvider = ({ children }) => {
     });
   }, []);
 
+  useEffect(() => {
+    const inCart = items.filter((i) => i.timesPicked > 0);
+    setItemsInCart(inCart);
+  }, [items]);
+
   return (
-    <Context.Provider value={{ items, setItems, itemsInCart, setItemsInCart, modalOpen, setModalOpen }}>
-      {children}
-    </Context.Provider>
+    <Context.Provider value={{ items, setItems, itemsInCart, modalOpen, setModalOpen }}>{children}</Context.Provider>
   );
+};
+
+const cartReducer = (itemsInCart, action) => {
+  switch (action) {
+    case 'increment':
+      break;
+
+    default:
+      break;
+  }
 };
 
 export default ContextProvider;

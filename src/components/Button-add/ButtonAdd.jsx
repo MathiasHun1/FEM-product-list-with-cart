@@ -21,7 +21,7 @@ const ButtonAdd = ({ cardData, isActive, setActive }) => {
     }
 
     if (!isActive && cardData.timesPicked === 0) {
-      const cardDataCopy = _.cloneDeep(cardData); // neccessary ?
+      const cardDataCopy = _.cloneDeep(cardData);
       cardDataCopy.timesPicked += 1;
 
       const updatedItemsList = helpers.updateItemsList(items, cardDataCopy);
@@ -34,7 +34,7 @@ const ButtonAdd = ({ cardData, isActive, setActive }) => {
 
   const handleIncrement = (e) => {
     e.stopPropagation();
-    const cardDataCopy = _.cloneDeep(cardData); // neccessary ?
+    const cardDataCopy = _.cloneDeep(cardData);
     cardDataCopy.timesPicked += 1;
 
     const updatedItemsList = helpers.updateItemsList(items, cardDataCopy);

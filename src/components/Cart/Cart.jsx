@@ -24,7 +24,7 @@ const Cart = () => {
     neutral_span,
   } = styles;
 
-  const { items, setItems, itemsInCart, setItemsInCart } = useContext(Context);
+  const { items, setItems, itemsInCart } = useContext(Context);
   const [isEmpty, setIsEmpty] = useState(true);
 
   const cartItemCount = itemsInCart ? itemsInCart.reduce((prev, item) => prev + item.timesPicked, 0) : 0;
@@ -33,7 +33,6 @@ const Cart = () => {
 
   useEffect(() => {
     initCartState();
-    updateCart(items);
   }, [items]);
 
   const initCartState = () => {
@@ -42,12 +41,6 @@ const Cart = () => {
     } else {
       setIsEmpty(false);
     }
-  };
-
-  const updateCart = (items) => {
-    const pickedItems = items.filter((i) => i.timesPicked !== 0);
-
-    setItemsInCart(pickedItems);
   };
 
   const removeFromCart = (itemName) => {
