@@ -26,28 +26,7 @@ const createItemsList = (rawData) => {
   return transformedData;
 };
 
-const setPickedValue = (itemListing, itemName, addedCount) => {
-  const itemListingCopy = _.cloneDeep(itemListing);
-  const item = itemListingCopy.find((i) => i.name === itemName);
-
-  item.timesPicked = addedCount;
-  return itemListingCopy;
-};
-
-const updateItemsList = (itemsList, item) => {
-  const existingItemIndex = itemsList.findIndex((i) => i.id === item.id);
-
-  //append if item not exist yet
-  if (existingItemIndex === -1) {
-    return itemsList.concat(item);
-  }
-
-  return itemsList.map((i, index) => (index === existingItemIndex ? item : i));
-};
-
 export default {
   fixPath,
   createItemsList,
-  setPickedValue,
-  updateItemsList,
 };
