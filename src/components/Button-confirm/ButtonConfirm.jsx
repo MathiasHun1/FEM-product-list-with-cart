@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 import styles from './ButtonConfirm.module.css';
-import ItemsContext from '../../contexts/ItemsContext';
+import { Context } from '../../contexts/ItemsContext';
 
 const ButtonConfirm = ({ text = '' }) => {
-  const { modalOpen, setModalOpen } = useContext(ItemsContext);
+  const { modalOpen, setModalOpen } = useContext(Context);
 
   const handleClick = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });

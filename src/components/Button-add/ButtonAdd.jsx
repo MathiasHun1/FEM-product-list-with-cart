@@ -3,11 +3,11 @@ import helpers from '../../utils';
 import { useContext, useEffect } from 'react';
 import _ from 'lodash';
 
-import ItemsContext from '../../contexts/ItemsContext';
+import { Context } from '../../contexts/ItemsContext';
 
 const ButtonAdd = ({ cardData, isActive, setActive }) => {
   const { add_button, quantity_wrapper, icon, red, clickable } = styles;
-  const { items, setItems } = useContext(ItemsContext);
+  const { items, setItems } = useContext(Context);
 
   useEffect(() => {
     if (cardData.timesPicked === 0) {

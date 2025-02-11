@@ -7,7 +7,7 @@ import ButtonConfirm from '../Button-confirm/ButtonConfirm';
 import _ from 'lodash';
 import helpers from '../../utils';
 
-import ItemsContext from '../../contexts/ItemsContext';
+import { Context } from '../../contexts/ItemsContext';
 
 const Cart = () => {
   const {
@@ -24,7 +24,7 @@ const Cart = () => {
     neutral_span,
   } = styles;
 
-  const { items, setItems, itemsInCart, setItemsInCart } = useContext(ItemsContext);
+  const { items, setItems, itemsInCart, setItemsInCart } = useContext(Context);
   const [isEmpty, setIsEmpty] = useState(true);
 
   const cartItemCount = itemsInCart ? itemsInCart.reduce((prev, item) => prev + item.timesPicked, 0) : 0;

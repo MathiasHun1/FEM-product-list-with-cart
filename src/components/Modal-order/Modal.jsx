@@ -4,11 +4,11 @@ import confirmSvg from './icon-order-confirmed.svg';
 import ListItem from '../List-Item/ListItem';
 import _ from 'lodash';
 import { useContext, useEffect, useState } from 'react';
-import ItemsContext from '../../contexts/ItemsContext';
+import { Context } from '../../contexts/ItemsContext';
 
 const Modal = () => {
   const [isVisible, setVisible] = useState(false);
-  const { itemsInCart, modalOpen, setModalOpen, items, setItems } = useContext(ItemsContext);
+  const { itemsInCart, modalOpen, setModalOpen, items, setItems } = useContext(Context);
 
   useEffect(() => {
     if (modalOpen) {

@@ -1,12 +1,12 @@
 import { useContext } from 'react';
-import ItemsContext from '../../contexts/ItemsContext';
+import { Context } from '../../contexts/ItemsContext';
 import styles from './MainGrid.module.css';
 
 import Card from '../Card/Card';
 
 const MainGrid = () => {
-  const { main_grid, title, cards_grid, image_wrapper } = styles;
-  const { items } = useContext(ItemsContext);
+  const { main_grid, title, cards_grid } = styles;
+  const { items } = useContext(Context);
 
   if (!items) {
     return <p>Loading...</p>;
