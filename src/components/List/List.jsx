@@ -1,7 +1,8 @@
 import styles from './List.module.css';
+import { motion } from 'motion/react';
 
 const List = ({ children }) => {
-  return <ul className={styles.list}>{children}</ul>;
+  return <motion.ul className={styles.list}>{children}</motion.ul>;
 };
 
 export default List;

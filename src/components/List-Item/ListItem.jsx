@@ -1,4 +1,5 @@
 import styles from './ListItem.module.css';
+import { motion } from 'motion/react';
 
 const ListItem = ({ itemName, price, id, quantity, image, removeFromCart, type }) => {
   if (type !== 'in-cart' && type !== 'ordered') {
@@ -11,7 +12,11 @@ const ListItem = ({ itemName, price, id, quantity, image, removeFromCart, type }
 
   return (
     <>
-      <li className={styles.list_item}>
+      <motion.li
+        className={styles.list_item}
+        initial={{ height: 0, opacity: 0 }}
+        animate={{ height: 'auto', opacity: 1 }}
+        transition={{ duration: 0.2, ease: 'easeInOut' }}>
         {orderedType && <img className={styles.thumbnail} src={imageSource} alt="" />}
 
         <div className={styles.inner_wrapper}>
@@ -47,7 +52,7 @@ const ListItem = ({ itemName, price, id, quantity, image, removeFromCart, type }
             </div>
           )}
         </div>
-      </li>
+      </motion.li>
       <div className={styles.spacer}></div>
     </>
   );

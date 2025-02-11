@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import styles from './Cart.module.css';
+import { motion } from 'motion/react';
 
 import List from '../List/List';
 import ListItem from '../List-Item/ListItem';
@@ -46,7 +47,7 @@ const Cart = () => {
   };
 
   return (
-    <div className={cart_wrapper}>
+    <motion.div className={cart_wrapper}>
       <h2 className={cart_title}>Your Cart {`(${cartItemCount})`}</h2>
 
       {isEmpty && (
@@ -88,7 +89,7 @@ const Cart = () => {
           <ButtonConfirm text={'Confirm Order'} />
         </>
       )}
-    </div>
+    </motion.div>
   );
 };
 
